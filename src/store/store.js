@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     beerList: [],
+    favoriteBeers: [],
   },
   mutations: {
     GET_BEER_LIST(state, beerList) {
