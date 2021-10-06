@@ -1,6 +1,6 @@
 <template>
   <div class="beer-list">
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
       <BeerCard v-for="beer in beerList" :key="beer.id" :beer="beer" />
     </div>
   </div>
