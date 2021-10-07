@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// import Home from '@/views/Home'
 import SearchBar from '@/components/SearchBar'
 
 export default {

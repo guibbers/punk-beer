@@ -1,9 +1,10 @@
 <template>
-  <v-form @submit.prevent="">
+  <v-form @submit.prevent="searchBeer">
     <v-row>
       <v-col lg="4"></v-col>
       <v-col lg="4">
         <v-text-field
+          v-model="query"
           label="Search Beer"
           class="text-field"
           prepend-inner-icon="mdi-magnify"
@@ -23,9 +24,20 @@
 
 <script>
 import BaseButton from '@/components/BaseButton'
+
 export default {
+  data() {
+    return {
+      query: '',
+    }
+  },
   components: {
     BaseButton,
+  },
+  methods: {
+    searchBeer() {
+      this.$store.dispatch('getBeerList', this.query)
+    },
   },
 }
 </script>

@@ -18,8 +18,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getBeerList({ commit }) {
-      EventService.getBeers().then((res) => {
+    getBeerList({ commit }, searchBeer) {
+      EventService.getBeers(searchBeer).then((res) => {
         commit('GET_BEER_LIST', res.data)
       })
     },
