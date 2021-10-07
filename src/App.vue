@@ -13,21 +13,17 @@
       >
     </v-app-bar>
     <v-content>
-      <SearchBar />
       <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar'
-
 export default {
   name: 'App',
 
   components: {
     // Home,
-    SearchBar,
   },
 
   data: () => ({

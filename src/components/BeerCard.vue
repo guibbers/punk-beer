@@ -7,8 +7,10 @@
         <img class="beer" :src="beer.image_url" />
       </div>
       <v-btn @click="favoriteBeer">
-        Favorite This Beer
-        <v-icon>mdi-heart</v-icon>
+        {{ isFavorite ? 'Favorited' : 'Favorite This Beer' }}
+        <v-icon color="red">{{
+          isFavorite ? 'mdi-heart' : 'mdi-heart-outline'
+        }}</v-icon>
       </v-btn>
     </v-card>
   </div>
@@ -16,12 +18,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isFavorite: false,
+    }
+  },
   props: {
     beer: Object,
   },
   methods: {
     favoriteBeer() {
       this.$store.dispatch('favoriteBeer', this.beer)
+      this.isFavorite = !this.isFavorite
     },
   },
 }
