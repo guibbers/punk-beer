@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <BeerList />
+    <v-snackbar :timeout="-1" :value="true" dark bottom outlined>
+      Lorem ipsum dolor sit amet consectetur.
+    </v-snackbar>
   </div>
 </template>
 

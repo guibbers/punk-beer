@@ -13,12 +13,18 @@ export default new Vuex.Store({
     GET_BEER_LIST(state, beerList) {
       state.beerList = beerList
     },
+    FAVORITE_BEER(state, beer) {
+      state.favoriteBeers.push(beer)
+    },
   },
   actions: {
     getBeerList({ commit }) {
       EventService.getBeers().then((res) => {
         commit('GET_BEER_LIST', res.data)
       })
+    },
+    favoriteBeer({ commit }, beer) {
+      commit('FAVORITE_BEER', beer)
     },
   },
   modules: {},
