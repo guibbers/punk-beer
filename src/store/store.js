@@ -9,6 +9,7 @@ export default new Vuex.Store({
     beerList: [],
     favoriteBeers: [],
   },
+
   mutations: {
     GET_BEER_LIST(state, beerList) {
       state.beerList = beerList
@@ -16,7 +17,11 @@ export default new Vuex.Store({
     FAVORITE_BEER(state, beer) {
       state.favoriteBeers.push(beer)
     },
+    UNFAVORITE_BEER(state, index) {
+      state.favoriteBeers.splice(index, 1)
+    },
   },
+
   actions: {
     getBeerList({ commit }, searchBeer) {
       EventService.getBeers(searchBeer).then((res) => {
@@ -26,6 +31,28 @@ export default new Vuex.Store({
     favoriteBeer({ commit }, beer) {
       commit('FAVORITE_BEER', beer)
     },
+    unfavoriteBeer({ commit, getters }, id) {
+      commit('UNFAVORITE_BEER', getters.getBeerIndex(id))
+    },
   },
+
   modules: {},
+
+  getters: {
+    isFavorite: (state) => (id) => {
+      let favorited = false
+      state.favoriteBeers.forEach((beer) => {
+        if (id === beer.id) favorited = true
+      })
+      return favorited
+    },
+
+    getBeerIndex: (state) => (id) => {
+      state.favoriteBeers.forEach((beer) => {
+        if (beer.id === id) {
+          return state.favoriteBeers.indexOf(beer)
+        }
+      })
+    },
+  },
 })

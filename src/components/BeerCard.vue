@@ -20,7 +20,7 @@
 export default {
   data() {
     return {
-      isFavorite: false,
+      isFavorite: this.$store.getters.isFavorite(this.beer.id),
     }
   },
   props: {
@@ -28,7 +28,11 @@ export default {
   },
   methods: {
     favoriteBeer() {
-      this.$store.dispatch('favoriteBeer', this.beer)
+      if (!this.isFavorite) {
+        this.$store.dispatch('favoriteBeer', this.beer)
+      } else {
+        this.$store.dispatch('unfavoriteBeer', this.beer.id)
+      }
       this.isFavorite = !this.isFavorite
     },
   },
